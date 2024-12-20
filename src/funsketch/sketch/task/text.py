@@ -18,7 +18,7 @@ class TextTask(BaseTask):
         os.makedirs(self.sketch.result_text, exist_ok=True)
         files = os.listdir(self.sketch.result_audio)
         files = sorted(files, key=lambda x: x)
-        model = whisper.load_model("turbo", device="cpu")
+        model = whisper.load_model("turbo")
         for file in files:
             textfile = os.path.join(
                 self.sketch.result_text, file.replace(".wav", ".txt")
@@ -29,6 +29,6 @@ class TextTask(BaseTask):
                 logger.info(f"text file {textfile} already exists")
                 continue
             audio_path = os.path.join(self.sketch.result_audio, file)
-            result = model.transcribe(audio_path, language="zh", verbose=True)
+            result = model.transcribe(audio_path, language="zh")
             with open(textfile, "w", encoding="utf-8") as f:
                 f.write(json.dumps(result))
