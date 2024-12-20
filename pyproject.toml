@@ -1,9 +1,9 @@
 [project]
 name = "funsketch"
-version = "1.0.11"
+version = "1.0.13"
 description = "funsketch"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = [ "fundrive[baidu]>=1.2.74", "funutil>=1.0.46", "moviepy>=2.0.0",]
 [[project.authors]]
 name = "niuliangtao"

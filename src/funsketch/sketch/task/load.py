@@ -52,7 +52,10 @@ class LoadTask(BaseTask):
             )
         os.makedirs(self.sketch.result_video, exist_ok=True)
         self.drive.download_dir(
-            fid=path, local_dir=self.sketch.result_video, ignore_filter=lambda x: not x.endswith("mp4")
+            fid=path,
+            local_dir=self.sketch.result_video,
+            ignore_filter=lambda x: not x.endswith("mp4"),
+            multi=True,
         )
         self.rename(self.sketch.result_video)
 
@@ -67,5 +70,9 @@ class LoadTask(BaseTask):
         common_name = longest_common_substring(files)
         logger.info("最长公共子串:", common_name)
         for old_name in files:
-            new_name = common_name + "0" * (max_size - len(old_name)) + old_name.replace(common_name, "")
+            new_name = (
+                common_name
+                + "0" * (max_size - len(old_name))
+                + old_name.replace(common_name, "")
+            )
             os.rename(old_name, new_name)
