@@ -23,7 +23,7 @@ class BaseTask:
     def _run(self, *args, **kwargs):
         pass
 
-    def run(self, sketch: SketchMeta, retry=False, *args, **kwargs):
+    def run(self, retry=False, *args, **kwargs):
         if self.is_success():
             if not retry:
                 logger.success(
@@ -31,7 +31,7 @@ class BaseTask:
                 )
                 return
             os.remove(self.success_file)
-        self._run(sketch, *args, **kwargs)
+        self._run(*args, **kwargs)
         self.success()
 
 
