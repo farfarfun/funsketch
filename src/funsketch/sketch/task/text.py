@@ -32,3 +32,4 @@ class TextTask(BaseTask):
             result = model.transcribe(audio_path, language="zh")
             with open(textfile, "w", encoding="utf-8") as f:
                 f.write(json.dumps(result))
+            logger.success(f"{file} success")

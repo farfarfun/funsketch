@@ -499,27 +499,27 @@ wheels = [
 
 [[package]]
 name = "funfile"
-version = "1.0.13"
+version = "1.0.15"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "funutil" },
     { name = "tqdm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e1/70/d15d70dd0f5419f1084d15b317ea7ebf3147dd96f1ee560d9f1e0a659e39/funfile-1.0.13.tar.gz", hash = "sha256:ff434d4fcd34dcaf3112f2d22bacbdea694f8badf18050784c4c162fb80e700f", size = 4979 }
+sdist = { url = "https://files.pythonhosted.org/packages/f9/fe/92ae7748205d4ec2fb1daa953e2d563bea1be1e0023361055fd4ee8b5a59/funfile-1.0.15.tar.gz", hash = "sha256:06fc715a97efe2c5187839686129a54ce2ed5a0eeda8334da40befa3e5166fb0", size = 4954 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/13/a4/1cf42f96a7d97f705696f9f3a90b2511a85b80804e0700b97094d55fa044/funfile-1.0.13-py3-none-any.whl", hash = "sha256:d8839f5b9f3bf6d8bc56fb111c1cef44bc626764dd74b9bf70008f60b05fc90d", size = 6628 },
+    { url = "https://files.pythonhosted.org/packages/6f/e6/4730f8e59e225be04f36d23cc94492947917b517dc5cdea008b6a8133aec/funfile-1.0.15-py3-none-any.whl", hash = "sha256:7c4af55388fd830e1eb80cb1235f6e069639ab8a9081777be92706e3ec8b7a5f", size = 6687 },
 ]
 
 [[package]]
 name = "funget"
-version = "1.0.34"
+version = "1.0.41"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "funfile" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/47/c4/a43c0661a40c3d3e0872d9409af43ffe858e318524a658406c8a80c0d837/funget-1.0.34.tar.gz", hash = "sha256:b6a5a9f42f4d6ff58f23964cb7c9287611098569aaaf8d432c6ae60974bf5c4b", size = 5103 }
+sdist = { url = "https://files.pythonhosted.org/packages/7b/4f/72ee20997f8909992a32b44028ee497a6bde966407a775f16f67e2be7208/funget-1.0.41.tar.gz", hash = "sha256:6e33e9665a390dc9bdf34b60ebcd9ae8af79b332cdcd7b31b5dec895ef98a8b2", size = 5098 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3e/7d/209d9bfea1a2ffc7572465972cbb781bdd193195a63f019465434bbf7968/funget-1.0.34-py3-none-any.whl", hash = "sha256:41b1e775e22b9dc42ddf30c4e8d2be426a44ff0aca62db9a64f9741bdc6a1196", size = 7011 },
+    { url = "https://files.pythonhosted.org/packages/fc/65/19e1df1f60274cce193546c1495261fdc399cb547ee616748fac4bfe82c6/funget-1.0.41-py3-none-any.whl", hash = "sha256:dfbb9ec53d81e9daff6825dd26a5323085c79f570feb839d82bdb98ca82eadd3", size = 7120 },
 ]
 
 [[package]]
@@ -541,7 +541,7 @@ wheels = [
 
 [[package]]
 name = "funsketch"
-version = "1.0.15"
+version = "1.0.16"
 source = { virtual = "." }
 dependencies = [
     { name = "funai" },
