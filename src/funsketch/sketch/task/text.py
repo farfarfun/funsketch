@@ -2,9 +2,11 @@ import json
 import os
 
 import whisper
-from funsketch.sketch.meta import SketchMeta
-from .base import BaseTask
 from funutil import getLogger
+
+from funsketch.sketch.meta import SketchMeta
+
+from .base import BaseTask
 
 logger = getLogger(__name__)
 
@@ -13,7 +15,8 @@ class TextTask(BaseTask):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    def run(self, sketch: SketchMeta, *args, **kwargs):
+    def _run(self, sketch: SketchMeta, *args, **kwargs):
+        self.success_file = os.path.join(sketch.result_text, "SUCCESS")
         os.makedirs(sketch.result_text, exist_ok=True)
         files = os.listdir(sketch.result_audio)
         files = sorted(files, key=lambda x: x)

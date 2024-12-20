@@ -41,7 +41,8 @@ class LoadTask(BaseTask):
         self.drive = BaiDuDrive()
         self.drive.login(bduss=bduss, stoken=stoken, ptoken=ptoken)
 
-    def run(self, sketch: SketchMeta, *args, **kwargs):
+    def _run(self, sketch: SketchMeta, *args, **kwargs):
+        self.success_file = os.path.join(sketch.result_video, "SUCCESS")
         path = f"/sketch/{sketch.name}"
         if not self.drive.exist(path):
             self.drive.save_shared(

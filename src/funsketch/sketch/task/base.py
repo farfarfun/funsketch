@@ -1,13 +1,37 @@
-from funsketch.sketch.meta import SketchMeta
+import os
 from typing import List
+
+from funutil import getLogger
+
+from funsketch.sketch.meta import SketchMeta
+
+logger = getLogger("funsketch")
 
 
 class BaseTask:
     def __init__(self, *args, **kwargs):
+        self.success_file = None
+
+    def success(self):
+        if self.success_file is not None:
+            open(self.success_file, "a").close()
+
+    def is_success(self):
+        return self.success_file is not None and os.path.exists(self.success_file)
+
+    def _run(self, sketch: SketchMeta, *args, **kwargs):
         pass
 
-    def run(self, sketch: SketchMeta, *args, **kwargs):
-        pass
+    def run(self, sketch: SketchMeta, retry=False, *args, **kwargs):
+        if self.is_success():
+            if not retry:
+                logger.success(
+                    f"task already success, {self.success_file} exists, skipping."
+                )
+                return
+            os.remove(self.success_file)
+        self._run(sketch, *args, **kwargs)
+        self.success()
 
 
 class TaskRun(BaseTask):
