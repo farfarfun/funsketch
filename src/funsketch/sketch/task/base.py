@@ -9,7 +9,8 @@ logger = getLogger("funsketch")
 
 
 class BaseTask:
-    def __init__(self, *args, **kwargs):
+    def __init__(self, sketch: SketchMeta, *args, **kwargs):
+        self.sketch = sketch
         self.success_file = None
 
     def success(self):
@@ -19,7 +20,7 @@ class BaseTask:
     def is_success(self):
         return self.success_file is not None and os.path.exists(self.success_file)
 
-    def _run(self, sketch: SketchMeta, *args, **kwargs):
+    def _run(self, *args, **kwargs):
         pass
 
     def run(self, sketch: SketchMeta, retry=False, *args, **kwargs):
@@ -39,6 +40,6 @@ class TaskRun(BaseTask):
         self.task_list = task_list
         super().__init__(*args, **kwargs)
 
-    def run(self, sketch: SketchMeta, *args, **kwargs):
+    def run(self, *args, **kwargs):
         for task in self.task_list:
-            task.run(sketch, *args, **kwargs)
+            task.run(*args, **kwargs)

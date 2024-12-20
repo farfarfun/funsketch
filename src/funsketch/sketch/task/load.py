@@ -2,11 +2,11 @@ import os
 
 from fundrive.drives.baidu.drive import BaiDuDrive
 from funsecret import read_cache_secret
-from funsketch.sketch.meta import SketchMeta
-from .base import BaseTask
 from funutil import getLogger
 
-logger = getLogger(__name__)
+from .base import BaseTask
+
+logger = getLogger("funsketch")
 
 
 def longest_common_substring(strings):
@@ -40,17 +40,19 @@ class LoadTask(BaseTask):
         ptoken = ptoken or read_cache_secret("fundrive", "baidu", "ptoken")
         self.drive = BaiDuDrive()
         self.drive.login(bduss=bduss, stoken=stoken, ptoken=ptoken)
+        self.success_file = os.path.join(self.sketch.result_video, "SUCCESS")
 
-    def _run(self, sketch: SketchMeta, *args, **kwargs):
-        self.success_file = os.path.join(sketch.result_video, "SUCCESS")
-        path = f"/sketch/{sketch.name}"
+    def _run(self, *args, **kwargs):
+        path = f"/sketch/{self.sketch.name}"
         if not self.drive.exist(path):
             self.drive.save_shared(
-                shared_url=sketch.shared_url, remote_dir="/sketch", password=sketch.pwd
+                shared_url=self.sketch.shared_url,
+                remote_dir="/sketch",
+                password=self.sketch.pwd,
             )
-        os.makedirs(sketch.result_video, exist_ok=True)
-        self.drive.download_dir(fid=path, local_dir=sketch.result_video)
-        self.rename(sketch.result_video)
+        os.makedirs(self.sketch.result_video, exist_ok=True)
+        self.drive.download_dir(fid=path, local_dir=self.sketch.result_video)
+        self.rename(self.sketch.result_video)
 
     def rename(self, path):
         files = [os.path.join(path, file) for file in os.listdir(path)]
