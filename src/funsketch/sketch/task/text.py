@@ -23,6 +23,8 @@ class TextTask(BaseTask):
             textfile = os.path.join(
                 self.sketch.result_text, file.replace(".wav", ".txt")
             )
+            if not file.endswith(".wav"):
+                continue
             if os.path.exists(textfile):
                 logger.info(f"text file {textfile} already exists")
                 continue
