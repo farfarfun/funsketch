@@ -46,7 +46,7 @@ def sync_episode_from_sketch(
                     fid=data["path"],
                     name=data["name"],
                     index=data["index"],
-                    sketch_id=sketch.id,
+                    sketch_id=sketch.uid,
                 )
                 episode.upsert(session=session)
             session.commit()
