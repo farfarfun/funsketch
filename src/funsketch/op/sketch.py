@@ -1,6 +1,7 @@
 from fundrive.core import BaseDrive
 from funsecret import read_secret
 from funsketch.db import Sketch
+from fundb.sqlalchemy.table import BaseTable
 from funutil import getLogger
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
