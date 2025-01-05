@@ -13,7 +13,7 @@ from .drive import get_default_drive
 logger = getLogger("funsketch")
 
 
-def sync_episode_sketch():
+def sync_episode_data():
     drive = get_default_drive()
     model = get_model("deepseek")
     engine = create_engine(read_secret("funsketch", "db", "url"), echo=False)
