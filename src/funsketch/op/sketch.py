@@ -25,3 +25,4 @@ def sync_data(
             fid = driver.mkdir(fid=funsketch_fid, name=file["name"])
             sketch = Sketch(fid=fid, name=file["name"])
             sketch.upsert(session)
+            session.commit()
