@@ -17,6 +17,7 @@ def sync_episode_data():
     drive = get_default_drive()
     model = get_model("deepseek")
     engine = create_engine(read_secret("funsketch", "db", "url"), echo=False)
+    BaseTable.metadata.create_all(self.engine)
     with Session(engine) as session:
         res = BaseTable.select_all(session=session, table=Sketch)
         for sketch in res:
