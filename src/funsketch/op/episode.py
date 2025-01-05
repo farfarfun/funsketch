@@ -8,7 +8,7 @@ from funutil import getLogger
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
-from .drive import get_default_drive
+from funsketch.op.drive import get_default_drive
 
 logger = getLogger("funsketch")
 
@@ -22,9 +22,9 @@ def sync_episode_data():
         res = BaseTable.select_all(session=session, table=Sketch)
         for sketch in res:
             data = [
-                data["fid"]
-                for data in drive.get_file_list(sketch.fid)
-                if data["fid"].endswith(".mp4")
+                f'{data["fid"]}, name={data["name"]}'
+                for data in drive.get_file_list(sketch.video_fid)
+                if data["name"].endswith(".mp4")
             ]
             data = "\n".join([i for i in data])
             prompt = f"""
@@ -33,7 +33,6 @@ def sync_episode_data():
                 """
             res = model.chat(prompt)
             res = json.loads(res)
-
             for data in res:
                 episode = Episode(
                     fid=data["path"],
@@ -41,5 +40,6 @@ def sync_episode_data():
                     index=data["index"],
                     sketch_id=sketch.uid,
                 )
+                print(episode.to_dict())
                 episode.upsert(session=session)
             session.commit()
