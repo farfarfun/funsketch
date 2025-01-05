@@ -18,6 +18,7 @@ def sync_sketch_data(
 
     url = read_secret("funsketch", "db", "url")
     engine = create_engine(url, echo=False)
+    BaseTable.metadata.create_all(engine)
     with Session(engine) as session:
         for file in driver.get_dir_list(sketch_fid):
             fid = driver.mkdir(fid=funsketch_fid, name=file["name"])
