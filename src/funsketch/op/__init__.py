@@ -1,1 +1,1 @@
-from .sketch import sync_data
+from .sketch import sync_sketch_data

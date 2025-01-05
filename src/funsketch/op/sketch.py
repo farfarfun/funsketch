@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 logger = getLogger("funsketch")
 
 
-def sync_data(
+def sync_sketch_data(
     driver: BaseDrive = None,
     sketch_fid="677a4bbc22c22185a94449fea7d7526e0905696d",
     funsketch_fid="677a78422552250db76c412c98b2c1d9b2779a58",
