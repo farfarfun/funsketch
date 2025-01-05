@@ -21,6 +21,6 @@ def sync_sketch_data(
     with Session(engine) as session:
         for file in driver.get_dir_list(sketch_fid):
             fid = driver.mkdir(fid=funsketch_fid, name=file["name"])
-            sketch = Sketch(fid=fid, name=file["name"])
+            sketch = Sketch(fid=fid, name=file["name"], video_fid=file.fid)
             sketch.upsert(session)
             session.commit()
