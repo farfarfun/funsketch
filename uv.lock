@@ -15,6 +15,23 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/b0/f5/2754950906ce7399830bb911257c374e87edd079ed985c9f5290006e8358/aget-0.2.0.tar.gz", hash = "sha256:bcb79250dadae37ab0c335a2885223cee9651e964fb9df009c1b881afa55698f", size = 8373 }
 
 [[package]]
+name = "aligo"
+version = "6.2.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "coloredlogs" },
+    { name = "datclass" },
+    { name = "qrcode", extra = ["pil"] },
+    { name = "qrcode-terminal" },
+    { name = "requests" },
+    { name = "tqdm" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/58/83/8929f3a139af4b4d550a9d8839faa4c71de10b8f8821386ff14910b60e81/aligo-6.2.4.tar.gz", hash = "sha256:69a160911f7ec17580b89c1e0bd0f33904208be38bd79d3bfccbff209f2044bd", size = 82568 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/48/f1/affdd74e8103bbb9c46f01d536e765b993af55d3151e580e7b738045df37/aligo-6.2.4-py3-none-any.whl", hash = "sha256:47348d4bbdbac1e4663660e689a11ea9caecdb108a334dedf5e6cae062b789d5", size = 141374 },
+]
+
+[[package]]
 name = "anyio"
 version = "4.7.0"
 source = { registry = "https://pypi.org/simple" }
@@ -320,6 +337,18 @@ wheels = [
 ]
 
 [[package]]
+name = "coloredlogs"
+version = "15.0.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "humanfriendly" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/cc/c7/eed8f27100517e8c0e6b923d5f0845d0cb99763da6fdee00478f91db7325/coloredlogs-15.0.1.tar.gz", hash = "sha256:7c991aa71a4577af2f82600d8f8f3a89f936baeaf9b50a9c197da014e5bf16b0", size = 278520 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a7/06/3d6badcf13db419e25b07041d9c7b4a2c331d3f4e7134445ec5df57714cd/coloredlogs-15.0.1-py2.py3-none-any.whl", hash = "sha256:612ee75c546f53e92e70049c9dbfcc18c935a2b9a53b66085ce9ef6a6e5c0934", size = 46018 },
+]
+
+[[package]]
 name = "cryptography"
 version = "44.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -406,6 +435,15 @@ wheels = [
 ]
 
 [[package]]
+name = "datclass"
+version = "0.2.28"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/43/b6/52392616582cf1497ef2589f674911122d75de8f2ef4a04e52583d2e113c/datclass-0.2.28.tar.gz", hash = "sha256:1c5643f8caea3439127b1e53c686516e75e814485461e7174ff1f698483082ad", size = 13015 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/43/32/feac5c9ceda0fa544bfe9341498d73e4d664a91b78c3e27a855f26aa6687/datclass-0.2.28-py3-none-any.whl", hash = "sha256:3ff2aa3d20e599a98664a496d978ffa105d3c0765cf02ad13d0e5e2c266ae538", size = 12606 },
+]
+
+[[package]]
 name = "decorator"
 version = "5.1.1"
 source = { registry = "https://pypi.org/simple" }
@@ -469,6 +507,9 @@ wheels = [
 ]
 
 [package.optional-dependencies]
+alipan = [
+    { name = "aligo" },
+]
 baidu = [
     { name = "fundrive-baidu" },
 ]
@@ -541,12 +582,12 @@ wheels = [
 
 [[package]]
 name = "funsketch"
-version = "1.0.42"
+version = "1.0.43"
 source = { virtual = "." }
 dependencies = [
     { name = "funai" },
     { name = "funddb" },
-    { name = "fundrive", extra = ["baidu"] },
+    { name = "fundrive", extra = ["alipan", "baidu"] },
     { name = "funsecret" },
     { name = "funtalk" },
     { name = "funutil" },
@@ -557,7 +598,7 @@ dependencies = [
 requires-dist = [
     { name = "funai", specifier = ">=1.0.1" },
     { name = "funddb", specifier = ">=1.2.11" },
-    { name = "fundrive", extras = ["baidu"], specifier = ">=1.2.74" },
+    { name = "fundrive", extras = ["alipan", "baidu"], specifier = ">=1.2.74" },
     { name = "funsecret", specifier = ">=1.4.30" },
     { name = "funtalk", specifier = ">=1.0.21" },
     { name = "funutil", specifier = ">=1.0.46" },
@@ -684,6 +725,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/b1/df/48c586a5fe32a0f01324ee087459e112ebb7224f646c0b5023f5e79e9956/httpx-0.28.1.tar.gz", hash = "sha256:75e98c5f16b0f35b567856f597f06ff2270a374470a5c2392242528e3e3e42fc", size = 141406 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl", hash = "sha256:d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad", size = 73517 },
+]
+
+[[package]]
+name = "humanfriendly"
+version = "10.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pyreadline3", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/cc/3f/2c29224acb2e2df4d2046e4c73ee2662023c58ff5b113c4c1adac0886c43/humanfriendly-10.0.tar.gz", hash = "sha256:6b0b831ce8f15f7300721aa49829fc4e83921a9a301cc7f606be6686a2288ddc", size = 360702 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f0/0f/310fb31e39e2d734ccaa2c0fb981ee41f7bd5056ce9bc29b2248bd569169/humanfriendly-10.0-py2.py3-none-any.whl", hash = "sha256:1697e1a8a8f550fd43c2865cd84542fc175a61dcb779b6fee18cf6b6ccba1477", size = 86794 },
 ]
 
 [[package]]
@@ -1164,6 +1217,15 @@ wheels = [
 ]
 
 [[package]]
+name = "pyreadline3"
+version = "3.5.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/0f/49/4cea918a08f02817aabae639e3d0ac046fef9f9180518a3ad394e22da148/pyreadline3-3.5.4.tar.gz", hash = "sha256:8d57d53039a1c75adba8e50dd3d992b28143480816187ea5efbd5c78e6c885b7", size = 99839 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/5a/dc/491b7661614ab97483abf2056be1deee4dc2490ecbf7bff9ab5cdbac86e1/pyreadline3-3.5.4-py3-none-any.whl", hash = "sha256:eaf8e6cc3c49bcccf145fc6067ba8643d1df34d604a1ec0eccbf7a18e6d3fae6", size = 83178 },
+]
+
+[[package]]
 name = "python-dotenv"
 version = "1.0.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1171,6 +1233,33 @@ sdist = { url = "https://files.pythonhosted.org/packages/bc/57/e84d88dfe0aec03b7
 wheels = [
     { url = "https://files.pythonhosted.org/packages/6a/3e/b68c118422ec867fa7ab88444e1274aa40681c606d59ac27de5a5588f082/python_dotenv-1.0.1-py3-none-any.whl", hash = "sha256:f7b63ef50f1b690dddf550d03497b66d609393b40b564ed0d674909a68ebf16a", size = 19863 },
 ]
+
+[[package]]
+name = "qrcode"
+version = "8.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d7/db/6fc9631cac1327f609d2c8ae3680ecd987a2e97472437f2de7ead1235156/qrcode-8.0.tar.gz", hash = "sha256:025ce2b150f7fe4296d116ee9bad455a6643ab4f6e7dce541613a4758cbce347", size = 42743 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/74/ab/df8d889fd01139db68ae9e5cb5c8f0ea016823559a6ecb427582d52b07dc/qrcode-8.0-py3-none-any.whl", hash = "sha256:9fc05f03305ad27a709eb742cf3097fa19e6f6f93bb9e2f039c0979190f6f1b1", size = 45710 },
+]
+
+[package.optional-dependencies]
+pil = [
+    { name = "pillow" },
+]
+
+[[package]]
+name = "qrcode-terminal"
+version = "0.8"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pillow" },
+    { name = "qrcode" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/96/62/2422c088b7219db9f78c912418254db9896d1b20ab15e83aae2821419a65/qrcode-terminal-0.8.tar.gz", hash = "sha256:1e2b69e662b9346e98dd95983033e9d43cff0643d8afda12605f515428e666c0", size = 1666 }
 
 [[package]]
 name = "requests"
