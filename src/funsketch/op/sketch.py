@@ -12,8 +12,8 @@ logger = getLogger("funsketch")
 
 def sync_sketch_data(
     driver: BaseDrive = None,
-    sketch_fid="/farfarfun/funsketch-短剧",
-    funsketch_fid="/farfarfun/funsketch",
+    sketch_fid="/funsketch-短剧",
+    funsketch_fid="/funsketch",
 ):
     driver = driver or get_default_drive()
 
