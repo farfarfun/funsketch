@@ -1,10 +1,10 @@
 [project]
 name = "funsketch"
-version = "1.0.45"
+version = "1.0.46"
 description = "funsketch"
 readme = "README.md"
 requires-python = ">=3.9"
-dependencies = [ "funai>=1.0.1", "funddb>=1.2.11", "fundrive[alipan,baidu]>=1.2.74", "funsecret>=1.4.30", "funtalk>=1.0.21", "funutil>=1.0.46", "moviepy>=2.0.0",]
+dependencies = [ "funai>=1.0.1", "funddb>=1.2.11", "fundrive[alipan,baidu,webdav]>=1.2.74", "funsecret>=1.4.30", "funtalk>=1.0.21", "funutil>=1.0.46", "moviepy>=2.0.0",]
 [[project.authors]]
 name = "niuliangtao"
 email = "farfarfun@qq.com"
