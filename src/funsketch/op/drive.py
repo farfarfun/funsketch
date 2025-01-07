@@ -4,7 +4,7 @@ from fundrive.drives.webdav import WebDavDrive
 from funsecret import read_secret
 
 
-def get_default_drive3():
+def get_default_drive():
     driver = BaiDuDrive()
     driver.login()
     return driver
@@ -16,7 +16,7 @@ def get_default_drive2():
     return driver
 
 
-def get_default_drive():
+def get_default_drive3():
     driver = WebDavDrive()
     driver.login(
         server_url=read_secret("funsketch", "webdav", "server_url"),
