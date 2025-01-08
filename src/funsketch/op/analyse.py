@@ -92,17 +92,17 @@ def update_text_episode(overwrite=False):
             episode_path.detect_text()
             driver.upload_file(local_path=episode_path.text_path, fid=text_fid)
 
-        name_dict = dict([(file.name, file.fid) for file in driver.get_file_list()])
-        for episode in episodes:
-            episode_path = EpisodePath(episode)
-            text_name = os.path.basename(episode_path.text_path)
-            if text_name in name_dict:
-                entity = Analyse(
-                    sketch_id=episode.sketch_id,
-                    episode_id=episode.uid,
-                    fid=name_dict[text_name],
-                    name=text_name,
-                    folder="text",
-                )
-                entity.upsert(session=session)
-                session.commit()
+            name_dict = dict([(file.name, file.fid) for file in driver.get_file_list()])
+            for episode in episodes:
+                episode_path = EpisodePath(episode)
+                text_name = os.path.basename(episode_path.text_path)
+                if text_name in name_dict:
+                    entity = Analyse(
+                        sketch_id=episode.sketch_id,
+                        episode_id=episode.uid,
+                        fid=name_dict[text_name],
+                        name=text_name,
+                        folder="text",
+                    )
+                    entity.upsert(session=session)
+                    session.commit()
