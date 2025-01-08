@@ -14,7 +14,6 @@ class Episode(BaseTable):
     name: Mapped[str] = mapped_column(String(128), comment="资源名称")
     size: Mapped[int] = mapped_column(comment="大小", default=0)
     fid: Mapped[str] = mapped_column(String(64), comment="文件唯一ID", default="")
-    text: Mapped[str] = mapped_column(String(1200), comment="视频文本", default="")
 
     def _get_uid(self):
         return f"{self.sketch_id}:{self.index}"
@@ -29,5 +28,4 @@ class Episode(BaseTable):
             "name": self.name,
             "size": self.size,
             "fid": self.fid,
-            "text": self.text,
         }
