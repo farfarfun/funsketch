@@ -92,7 +92,9 @@ def update_text_episode(overwrite=False):
             episode_path.detect_text()
             driver.upload_file(local_path=episode_path.text_path, fid=text_fid)
 
-            name_dict = dict([(file.name, file.fid) for file in driver.get_file_list()])
+            name_dict = dict(
+                [(file.name, file.fid) for file in driver.get_file_list(text_fid)]
+            )
             for episode in episodes:
                 episode_path = EpisodePath(episode)
                 text_name = os.path.basename(episode_path.text_path)
