@@ -81,6 +81,7 @@ def update_text_episode(overwrite=False):
         ]
 
         if episodes is None or len(episodes) == 0:
+            logger.success("all episonde analyse success.")
             return
 
         text_fid = driver1.mkdir(sketch_map[episodes[0].sketch_id], name="text")
