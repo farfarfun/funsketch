@@ -585,7 +585,7 @@ wheels = [
 
 [[package]]
 name = "funsketch"
-version = "1.0.58"
+version = "1.0.59"
 source = { virtual = "." }
 dependencies = [
     { name = "funai" },

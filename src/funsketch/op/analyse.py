@@ -72,12 +72,14 @@ def update_text_episode(overwrite=False):
 
         video_sql = select(Episode)
         text_sql = select(Analyse).where(Analyse.folder == "text")
-        episode2 = [t.fid for t in session.execute(text_sql).scalars()]
+        episode2 = [t.episode_id for t in session.execute(text_sql).scalars()]
+
         if overwrite:
             episode2.clear()
         episodes = [
-            t for t in session.execute(video_sql).scalars() if t.fid not in episode2
+            t for t in session.execute(video_sql).scalars() if t.uid not in episode2
         ]
+
         if episodes is None or len(episodes) == 0:
             return
 
@@ -106,3 +108,6 @@ def update_text_episode(overwrite=False):
                     )
                     entity.upsert(session=session)
                     session.commit()
+
+
+update_text_episode()
