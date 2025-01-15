@@ -109,6 +109,3 @@ def update_text_episode(overwrite=False):
                     )
                     entity.upsert(session=session)
                     session.commit()
-
-
-update_text_episode()
