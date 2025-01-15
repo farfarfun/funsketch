@@ -14,7 +14,7 @@ logger = getLogger("funsketch")
 
 
 def sync_episode_data():
-    drive = get_default_drive()
+    drive, _ = get_default_drive()
     model = get_model("deepseek")
     engine = create_engine(read_secret("funsketch", "db", "url"), echo=False)
     BaseTable.metadata.create_all(engine)

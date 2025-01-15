@@ -1,10 +1,12 @@
+from fundb.sqlalchemy.table import BaseTable
 from fundrive.core import BaseDrive
 from funsecret import read_secret
-from funsketch.db import Sketch
-from fundb.sqlalchemy.table import BaseTable
 from funutil import getLogger
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
+
+from funsketch.db import Sketch
+
 from .drive import get_default_drive
 
 logger = getLogger("funsketch")
@@ -15,7 +17,7 @@ def sync_sketch_data(
     sketch_fid="677b89d3768b8114e33642a0b18a3ea409f573b7",
     funsketch_fid="677b89d6711f33bdcb074e28b7bb0340fa242031",
 ):
-    driver = driver or get_default_drive()
+    driver = driver or get_default_drive()[0]
 
     url = read_secret("funsketch", "db", "url")
     engine = create_engine(url, echo=False)

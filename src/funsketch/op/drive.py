@@ -8,14 +8,16 @@ from funutil.cache import cache
 def get_default_driv1():
     driver = BaiDuDrive()
     driver.login()
-    return driver
+    return driver, driver
 
 
 @cache
 def get_default_drive():
-    driver = AlipanDrive()
-    driver.login()
-    return driver
+    driver1 = AlipanDrive()
+    driver1.login()
+    drive2 = AliopenDrive()
+    drive2.login()
+    return driver1, drive2
 
 
 def get_default_drive3():
@@ -33,4 +35,4 @@ def get_default_drive3():
             "password",
         ),
     )
-    return driver
+    return driver, driver

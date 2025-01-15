@@ -2,17 +2,16 @@ import json
 import os
 
 from fundb.sqlalchemy.table import BaseTable
-from fundrive.core import BaseDrive
 from funsecret import read_secret
-from funsketch.db import Episode, Sketch
-from funsketch.db.analyse import Analyse
-from funsketch.op.drive import get_default_drive
 from funtalk.asr import WhisperASR
 from funutil import getLogger
 from moviepy import VideoFileClip
-from sqlalchemy import create_engine
-from sqlalchemy import select
+from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
+
+from funsketch.db import Episode, Sketch
+from funsketch.db.analyse import Analyse
+from funsketch.op.drive import get_default_drive
 
 logger = getLogger("funsketch")
 
@@ -63,7 +62,7 @@ class EpisodePath:
 
 
 def update_text_episode(overwrite=False):
-    driver: BaseDrive = get_default_drive()
+    driver1, driver2 = get_default_drive()
     engine = create_engine(read_secret("funsketch", "db", "url"), echo=False)
     BaseTable.metadata.create_all(engine)
 
@@ -83,17 +82,17 @@ def update_text_episode(overwrite=False):
         if episodes is None or len(episodes) == 0:
             return
 
-        text_fid = driver.mkdir(sketch_map[episodes[0].sketch_id], name="text")
+        text_fid = driver1.mkdir(sketch_map[episodes[0].sketch_id], name="text")
 
         for episode in episodes:
             episode_path = EpisodePath(episode)
-            episode_path.download_video(driver=driver)
+            episode_path.download_video(driver=driver2)
             episode_path.convert_video()
             episode_path.detect_text()
-            driver.upload_file(local_path=episode_path.text_path, fid=text_fid)
+            driver1.upload_file(local_path=episode_path.text_path, fid=text_fid)
 
             name_dict = dict(
-                [(file.name, file.fid) for file in driver.get_file_list(text_fid)]
+                [(file.name, file.fid) for file in driver2.get_file_list(text_fid)]
             )
             for episode in episodes:
                 episode_path = EpisodePath(episode)
