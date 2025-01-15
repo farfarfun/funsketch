@@ -35,7 +35,6 @@ class EpisodePath:
     def download_video(self, driver):
         driver.download_file(
             self.episode.fid,
-            local_dir=self.sketch_dir,
             filepath=self.video_path,
             overwrite=False,
         )
@@ -89,7 +88,7 @@ def update_text_episode(overwrite=False):
             episode_path.download_video(driver=driver2)
             episode_path.convert_video()
             episode_path.detect_text()
-            driver1.upload_file(local_path=episode_path.text_path, fid=text_fid)
+            driver1.upload_file(filedir=episode_path.text_path, fid=text_fid)
 
             name_dict = dict(
                 [(file.name, file.fid) for file in driver2.get_file_list(text_fid)]
