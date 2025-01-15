@@ -1,4 +1,4 @@
-from fundrive.drives.alipan import AlipanDrive
+from fundrive.drives.alipan import AliopenDrive, AlipanDrive
 from fundrive.drives.baidu import BaiDuDrive
 from fundrive.drives.webdav import WebDavDrive
 from funsecret import read_secret
@@ -12,7 +12,7 @@ def get_default_driv1():
 
 def get_default_drive():
     driver = AlipanDrive()
-    driver.login(is_resource=True)
+    driver.login()
     return driver
 
 
