@@ -4,13 +4,13 @@ from fundrive.drives.webdav import WebDavDrive
 from funsecret import read_secret
 
 
-def get_default_drive():
+def get_default_driv1():
     driver = BaiDuDrive()
     driver.login()
     return driver
 
 
-def get_default_drive2():
+def get_default_drive():
     driver = AlipanDrive()
     driver.login(is_resource=True)
     return driver
