@@ -1,4 +1,4 @@
-from funsecret import read_secret
+from nltsecret import read_secret
 from funsketch.db import add_sketch, update_episode
 from funutil import getLogger
 from sqlalchemy import create_engine

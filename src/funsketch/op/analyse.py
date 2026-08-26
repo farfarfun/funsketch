@@ -2,7 +2,7 @@ import json
 import os
 
 from fundb.sqlalchemy.table import BaseTable
-from funsecret import read_secret
+from nltsecret import read_secret
 from funtalk.asr import WhisperASR
 from funutil import getLogger
 from moviepy import VideoFileClip

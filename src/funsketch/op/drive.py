@@ -1,7 +1,7 @@
 from fundrive.drives.alipan import AliopenDrive, AlipanDrive
 from fundrive.drives.baidu import BaiDuDrive
 from fundrive.drives.webdav import WebDavDrive
-from funsecret import read_secret
+from nltsecret import read_secret
 from funutil.cache import cache
 
 

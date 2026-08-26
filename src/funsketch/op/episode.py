@@ -2,7 +2,7 @@ import json
 
 from funai.llm import get_model
 from fundb.sqlalchemy.table import BaseTable
-from funsecret import read_secret
+from nltsecret import read_secret
 from funsketch.db import Episode, Sketch
 from funutil import getLogger
 from sqlalchemy import create_engine
