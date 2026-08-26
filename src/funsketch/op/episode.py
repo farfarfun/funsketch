@@ -22,7 +22,7 @@ def sync_episode_data():
         res = BaseTable.select_all(session=session, table=Sketch)
         for sketch in res:
             data = [
-                f'{data["fid"]}, name={data["name"]}'
+                f"{data['fid']}, name={data['name']}"
                 for data in drive.get_file_list(sketch.video_fid)
                 if data["name"].endswith(".mp4")
             ]

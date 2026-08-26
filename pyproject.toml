@@ -1,13 +1,30 @@
 [project]
 name = "funsketch"
-version = "1.0.61"
+version = "1.0.62"
 description = "funsketch"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [ "funai>=1.0.1", "funddb>=1.2.11", "fundrive[alipan,baidu,webdav]>=1.2.74", "funsecret>=1.4.83", "funtalk>=1.0.21", "funutil>=1.0.46", "moviepy>=2.0.0",]
+license = "MIT"
+license-files = ["LICENSE"]
 [[project.authors]]
-name = "niuliangtao"
+name = "牛哥"
+email = "niuliangtao@qq.com"
+
+[[project.authors]]
+name = "farfarfun"
 email = "farfarfun@qq.com"
 
+[[project.maintainers]]
+name = "牛哥"
+email = "niuliangtao@qq.com"
+
+[[project.maintainers]]
+name = "farfarfun"
+email = "farfarfun@qq.com"
+
+[project.urls]
+Organization = "https://github.com/farfarfun"
+Repository = "https://github.com/farfarfun/funsketch"
+Releases = "https://github.com/farfarfun/funsketch/releases"
 [tool.setuptools]
-license-files = []
