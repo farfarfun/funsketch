@@ -1,7 +1,7 @@
 import os
 
 from fundrive.drives.baidu.drive import BaiDuDrive
-from nltsecret import read_cache_secret
+from funsecret import read_cache_secret
 from funutil import getLogger
 
 from .base import BaseTask

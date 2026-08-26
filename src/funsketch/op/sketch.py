@@ -1,6 +1,6 @@
 from fundb.sqlalchemy.table import BaseTable
 from fundrive.core import BaseDrive
-from nltsecret import read_secret
+from funsecret import read_secret
 from funutil import getLogger
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
