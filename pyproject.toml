@@ -4,7 +4,7 @@ version = "1.0.62"
 description = "funsketch"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = [ "funai>=1.0.1", "funddb>=1.2.11", "fundrive[alipan,baidu,webdav]>=1.2.74", "funsecret>=1.4.83", "funtalk>=1.0.21", "funutil>=1.0.46", "moviepy>=2.0.0",]
+dependencies = [ "funai>=1.0.1", "fundb-tau>=1.3.11", "fundrive[alipan,baidu,webdav]>=1.2.74", "funsecret>=1.4.83", "funtalk>=1.0.21", "funutil>=1.0.46", "moviepy>=2.0.0", "pandas>=1.3",]
 license = "MIT"
 license-files = ["LICENSE"]
 [[project.authors]]
@@ -28,3 +28,6 @@ Organization = "https://github.com/farfarfun"
 Repository = "https://github.com/farfarfun/funsketch"
 Releases = "https://github.com/farfarfun/funsketch/releases"
 [tool.setuptools]
+
+[dependency-groups]
+dev = [ "pytest>=7.0",]
