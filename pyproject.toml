@@ -29,6 +29,9 @@ Repository = "https://github.com/farfarfun/funsketch"
 Releases = "https://github.com/farfarfun/funsketch/releases"
 [tool.setuptools]
 
+[tool.uv]
+override-dependencies = ["pillow>=12.3.0"]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
