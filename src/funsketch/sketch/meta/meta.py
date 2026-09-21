@@ -1,6 +1,6 @@
 import os
 
-from funutil import getLogger
+from farlog import getLogger
 
 logger = getLogger("funsketch")
 

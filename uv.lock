@@ -710,6 +710,23 @@ wheels = [
 ]
 
 [[package]]
+name = "fardb"
+version = "1.4.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "farcache" },
+    { name = "farlog" },
+    { name = "funutil" },
+    { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "pandas", version = "3.0.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "requests" },
+    { name = "sqlalchemy" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/42/80/2fe8791127f9afe14aa8bcc8c0ae25ed38eb7306702115020f8e0ff8e25d/fardb-1.4.3-py3-none-any.whl", hash = "sha256:0b918604db0c0a069af3f591780392ff5c3ee30d57c782a3c0d97e375eb4c16e", size = 9198, upload-time = "2026-09-21T02:02:22.386Z" },
+]
+
+[[package]]
 name = "farlog"
 version = "1.1.8"
 source = { registry = "https://pypi.org/simple" }
@@ -959,15 +976,18 @@ name = "funsketch"
 version = "1.0.63"
 source = { editable = "." }
 dependencies = [
+    { name = "farcache" },
+    { name = "fardb" },
+    { name = "farlog" },
     { name = "funai" },
     { name = "fundrive", version = "2.0.57", source = { registry = "https://pypi.org/simple" }, extra = ["alipan", "baidu", "webdav"], marker = "python_full_version < '3.12'" },
     { name = "fundrive", version = "2.0.86", source = { registry = "https://pypi.org/simple" }, extra = ["alipan", "baidu", "webdav"], marker = "python_full_version >= '3.12'" },
     { name = "funsecret" },
     { name = "funtalk" },
-    { name = "funutil" },
     { name = "moviepy" },
     { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "pandas", version = "3.0.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "sqlalchemy" },
 ]
 
 [package.dev-dependencies]
@@ -977,13 +997,16 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "farcache", specifier = ">=2.0.3" },
+    { name = "fardb", specifier = ">=1.4.3" },
+    { name = "farlog", specifier = ">=1.1" },
     { name = "funai", specifier = ">=1.0.1" },
     { name = "fundrive", extras = ["alipan", "baidu", "webdav"], specifier = ">=1.2.74" },
     { name = "funsecret", specifier = ">=1.4.83" },
     { name = "funtalk", specifier = ">=1.0.21" },
-    { name = "funutil", specifier = ">=1.0.46" },
     { name = "moviepy", specifier = ">=2.0.0" },
     { name = "pandas", specifier = ">=1.3" },
+    { name = "sqlalchemy", specifier = ">=2.0" },
 ]
 
 [package.metadata.requires-dev]

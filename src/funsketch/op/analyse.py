@@ -1,10 +1,10 @@
 import json
 import os
 
-from fundb.sqlalchemy.table import BaseTable
+from fardb.sqlalchemy.table import BaseTable
 from funsecret import read_secret
 from funtalk.asr import WhisperASR
-from funutil import getLogger
+from farlog import getLogger
 from moviepy import VideoFileClip
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session

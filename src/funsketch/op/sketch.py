@@ -1,7 +1,7 @@
-from fundb.sqlalchemy.table import BaseTable
+from fardb.sqlalchemy.table import BaseTable
 from fundrive.core import BaseDrive
 from funsecret import read_secret
-from funutil import getLogger
+from farlog import getLogger
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
@@ -14,9 +14,10 @@ logger = getLogger("funsketch")
 
 def sync_sketch_data(
     driver: BaseDrive = None,
-    sketch_fid="677b89d3768b8114e33642a0b18a3ea409f573b7",
-    funsketch_fid="677b89d6711f33bdcb074e28b7bb0340fa242031",
-):
+    sketch_fid: str = "677b89d3768b8114e33642a0b18a3ea409f573b7",
+    funsketch_fid: str = "677b89d6711f33bdcb074e28b7bb0340fa242031",
+) -> None:
+    """同步网盘短剧目录到数据库。"""
     driver = driver or get_default_drive()[0]
 
     url = read_secret("funsketch", "db", "url")

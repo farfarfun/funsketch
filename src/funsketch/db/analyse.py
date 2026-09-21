@@ -1,5 +1,5 @@
-from fundb.sqlalchemy.table import BaseTable
-from funutil import getLogger
+from fardb.sqlalchemy.table import BaseTable
+from farlog import getLogger
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
 

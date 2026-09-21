@@ -1,5 +1,5 @@
-from fundb.sqlalchemy.table import BaseTable
-from funutil import getLogger
+from fardb.sqlalchemy.table import BaseTable
+from farlog import getLogger
 from sqlalchemy import Engine, String
 from sqlalchemy.orm import Mapped, Session, mapped_column
 
@@ -22,7 +22,8 @@ class Sketch(BaseTable):
         return {"name": self.name, "fid": self.fid, "video_fid": self.video_fid}
 
 
-def add_sketch(engine: Engine, name, fid, video_fid):
+def add_sketch(engine: Engine, name: str, fid: str, video_fid: str) -> None:
+    """写入或更新一部短剧的网盘目录信息。"""
     BaseTable.metadata.create_all(engine)
     with Session(engine) as session:
         Sketch(name=name, video_fid=video_fid, fid=fid).upsert(

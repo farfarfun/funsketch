@@ -1,10 +1,10 @@
 import json
 
 from funai.llm import get_model
-from fundb.sqlalchemy.table import BaseTable
+from fardb.sqlalchemy.table import BaseTable
 from funsecret import read_secret
 from funsketch.db import Episode, Sketch
-from funutil import getLogger
+from farlog import getLogger
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
@@ -13,7 +13,8 @@ from funsketch.op.drive import get_default_drive
 logger = getLogger("funsketch")
 
 
-def sync_episode_data():
+def sync_episode_data() -> None:
+    """同步网盘视频目录，使用模型推断剧集顺序并写入数据库。"""
     drive, _ = get_default_drive()
     model = get_model("deepseek")
     engine = create_engine(read_secret("funsketch", "db", "url"), echo=False)
@@ -40,6 +41,6 @@ def sync_episode_data():
                     index=data["index"],
                     sketch_id=sketch.uid,
                 )
-                print(episode.to_dict())
+                logger.info("已生成剧集: {}", episode.to_dict())
                 episode.upsert(session=session)
             session.commit()

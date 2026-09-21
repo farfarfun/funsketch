@@ -2,14 +2,15 @@ import os
 
 from fundrive.drives.baidu.drive import BaiDuDrive
 from funsecret import read_cache_secret
-from funutil import getLogger
+from farlog import getLogger
 
 from .base import BaseTask
 
 logger = getLogger("funsketch")
 
 
-def longest_common_substring(strings):
+def longest_common_substring(strings: list[str]) -> str:
+    """返回所有字符串共有的最长连续子串。"""
     if not strings:
         return ""
 
@@ -68,7 +69,7 @@ class LoadTask(BaseTask):
             logger.info("名称长度一样长")
             return
         common_name = longest_common_substring(files)
-        logger.info("最长公共子串:", common_name)
+        logger.info("最长公共子串: {}", common_name)
         for old_name in files:
             new_name = (
                 common_name

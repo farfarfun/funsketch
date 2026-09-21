@@ -2,7 +2,7 @@ import json
 import os
 
 from funtalk.asr import WhisperASR
-from funutil import getLogger
+from farlog import getLogger
 
 from .base import BaseTask
 

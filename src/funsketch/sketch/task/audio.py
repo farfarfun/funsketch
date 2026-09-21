@@ -1,6 +1,6 @@
 import os
 
-from funutil import getLogger
+from farlog import getLogger
 from moviepy import VideoFileClip
 
 from .base import BaseTask

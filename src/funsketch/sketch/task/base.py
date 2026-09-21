@@ -1,7 +1,5 @@
 import os
-from typing import List
-
-from funutil import getLogger
+from farlog import getLogger
 
 from funsketch.sketch.meta import SketchMeta
 
@@ -9,6 +7,7 @@ logger = getLogger("funsketch")
 
 
 class BaseTask:
+    """可重试并通过 SUCCESS 文件记录完成状态的任务。"""
     def __init__(self, sketch: SketchMeta, *args, **kwargs):
         self.sketch = sketch
         self.success_file = None
@@ -36,7 +35,7 @@ class BaseTask:
 
 
 class TaskRun(BaseTask):
-    def __init__(self, task_list: List[BaseTask], *args, **kwargs):
+    def __init__(self, task_list: list[BaseTask], *args, **kwargs):
         self.task_list = task_list
         super().__init__(*args, **kwargs)
 

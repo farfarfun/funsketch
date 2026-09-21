@@ -2,7 +2,7 @@ import json
 import os
 
 from funtalk.asr import WhisperASR
-from funutil import getLogger
+from farlog import getLogger
 from moviepy import VideoFileClip
 from sqlalchemy import Engine, func, select
 from sqlalchemy.orm import Session

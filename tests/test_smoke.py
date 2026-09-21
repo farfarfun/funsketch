@@ -31,6 +31,7 @@ import hashlib
 import os
 import sys
 import types
+from types import SimpleNamespace
 
 import pytest
 
@@ -123,6 +124,38 @@ def test_sketch_meta_default_root():
 
     meta = SketchMeta(shared_url="u", pwd="p", name="abc")
     assert meta.root == "./sketch_cache/abc"
+
+
+def test_sync_sketch_data_with_fake_driver():
+    """同步入口可用假的网盘驱动验证正常数据库路径。"""
+    from sqlalchemy import create_engine, select
+    from sqlalchemy.orm import Session
+
+    from funsketch.db import Sketch
+    from funsketch.op import sketch as sketch_op
+
+    class FakeDrive:
+        def get_dir_list(self, fid):
+            return [SimpleNamespace(name="示例短剧", fid="source-fid")]
+
+        def mkdir(self, fid, name):
+            return "target-fid"
+
+    engine = create_engine("sqlite:///:memory:")
+    original_engine = sketch_op.create_engine
+    original_secret = sketch_op.read_secret
+    sketch_op.create_engine = lambda *_args, **_kwargs: engine
+    sketch_op.read_secret = lambda *_args: "sqlite:///:memory:"
+    try:
+        sketch_op.sync_sketch_data(FakeDrive(), "source", "target")
+    finally:
+        sketch_op.create_engine = original_engine
+        sketch_op.read_secret = original_secret
+
+    with Session(engine) as session:
+        row = session.execute(select(Sketch)).scalar_one()
+        assert row.name == "示例短剧"
+        assert row.fid == "target-fid"
 
 
 def test_longest_common_substring_basic():
