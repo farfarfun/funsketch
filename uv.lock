@@ -1002,7 +1002,7 @@ requires-dist = [
     { name = "farlog", specifier = ">=1.1" },
     { name = "funai", specifier = ">=1.0.1" },
     { name = "fundrive", extras = ["alipan", "baidu", "webdav"], specifier = ">=1.2.74" },
-    { name = "funsecret", specifier = ">=1.4.83" },
+    { name = "funsecret", specifier = ">=1.4.84" },
     { name = "funtalk", specifier = ">=1.0.21" },
     { name = "moviepy", specifier = ">=2.0.0" },
     { name = "pandas", specifier = ">=1.3" },

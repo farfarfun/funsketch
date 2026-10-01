@@ -15,10 +15,10 @@ class Episode(BaseTable):
     size: Mapped[int] = mapped_column(comment="大小", default=0)
     fid: Mapped[str] = mapped_column(String(64), comment="文件唯一ID", default="")
 
-    def _get_uid(self):
+    def _get_uid(self) -> str:
         return f"{self.sketch_id}:{self.index}"
 
-    def _child(self):
+    def _child(self) -> type["Episode"]:
         return Episode
 
     def _to_dict(self) -> dict:

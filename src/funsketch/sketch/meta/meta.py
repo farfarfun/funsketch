@@ -6,7 +6,12 @@ logger = getLogger("funsketch")
 
 
 class SketchMeta:
-    def __init__(self, shared_url, pwd, name, root="./sketch_cache"):
+    """保存短剧共享信息和本地处理目录。"""
+
+    def __init__(
+        self, shared_url: str, pwd: str, name: str, root: str = "./sketch_cache"
+    ) -> None:
+        """初始化短剧元数据及各阶段的结果路径。"""
         self.shared_url = shared_url
         self.pwd = pwd
         self.name = name

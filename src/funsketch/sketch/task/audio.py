@@ -1,4 +1,5 @@
 import os
+from typing import Any
 
 from farlog import getLogger
 from moviepy import VideoFileClip
@@ -9,11 +10,14 @@ logger = getLogger(__name__)
 
 
 class AudioTask(BaseTask):
-    def __init__(self, *args, **kwargs):
+    """从短剧视频文件中提取音频。"""
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        """初始化音频任务及成功标记路径。"""
         super().__init__(*args, **kwargs)
         self.success_file = os.path.join(self.sketch.result_audio, "SUCCESS")
 
-    def _run(self, *args, **kwargs):
+    def _run(self, *args: Any, **kwargs: Any) -> None:
         os.makedirs(self.sketch.result_audio, exist_ok=True)
         files = os.listdir(self.sketch.result_video)
         files = sorted(files, key=lambda x: x)

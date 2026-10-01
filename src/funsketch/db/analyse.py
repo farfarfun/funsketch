@@ -16,10 +16,10 @@ class Analyse(BaseTable):
     fid: Mapped[str] = mapped_column(String(64), comment="文件唯一ID", default="")
     text: Mapped[str] = mapped_column(String(1200), comment="视频文本", default="")
 
-    def _get_uid(self):
+    def _get_uid(self) -> str:
         return f"{self.episode_id}:{self.folder}"
 
-    def _child(self):
+    def _child(self) -> type["Analyse"]:
         return Analyse
 
     def _to_dict(self) -> dict:

@@ -1,4 +1,5 @@
 import os
+from typing import Any
 
 from fundrive.drives.baidu.drive import BaiDuDrive
 from funsecret import read_cache_secret
@@ -34,7 +35,17 @@ def longest_common_substring(strings: list[str]) -> str:
 
 
 class LoadTask(BaseTask):
-    def __init__(self, bduss=None, stoken=None, ptoken=None, *args, **kwargs):
+    """从百度网盘下载短剧视频并整理文件名。"""
+
+    def __init__(
+        self,
+        bduss: str | None = None,
+        stoken: str | None = None,
+        ptoken: str | None = None,
+        *args: Any,
+        **kwargs: Any,
+    ) -> None:
+        """使用指定凭据或缓存凭据初始化百度网盘驱动。"""
         super().__init__(*args, **kwargs)
         bduss = bduss or read_cache_secret("fundrive", "baidu", "bduss")
         stoken = stoken or read_cache_secret("fundrive", "baidu", "stoken")
@@ -43,7 +54,7 @@ class LoadTask(BaseTask):
         self.drive.login(bduss=bduss, stoken=stoken, ptoken=ptoken)
         self.success_file = os.path.join(self.sketch.result_video, "SUCCESS")
 
-    def _run(self, *args, **kwargs):
+    def _run(self, *args: Any, **kwargs: Any) -> None:
         path = f"/sketch/{self.sketch.name}"
         if not self.drive.exist(path):
             self.drive.save_shared(
@@ -60,7 +71,8 @@ class LoadTask(BaseTask):
         )
         self.rename(self.sketch.result_video)
 
-    def rename(self, path):
+    def rename(self, path: str) -> None:
+        """统一目录内文件名的数字部分宽度。"""
         files = [os.path.join(path, file) for file in os.listdir(path)]
         sizes = [len(file) for file in files]
         max_size = max(sizes)
