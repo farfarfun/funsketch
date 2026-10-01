@@ -690,7 +690,7 @@ name = "exceptiongroup"
 version = "1.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "typing-extensions", marker = "python_full_version < '3.11'" },
+    { name = "typing-extensions" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/50/79/66800aadf48771f6b62f7eb014e352e5d06856655206165d775e675a02c9/exceptiongroup-1.3.1.tar.gz", hash = "sha256:8b412432c6055b0b7d14c310000ae93352ed6754f70fa8f7c34141f91c4e3219", size = 30371, upload-time = "2025-11-21T23:01:54.787Z" }
 wheels = [
@@ -761,12 +761,12 @@ resolution-markers = [
     "python_full_version < '3.11'",
 ]
 dependencies = [
-    { name = "funget", version = "1.1.58", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
-    { name = "funlog-tau", marker = "python_full_version < '3.12'" },
-    { name = "funsecret", marker = "python_full_version < '3.12'" },
-    { name = "orjson", marker = "python_full_version < '3.12'" },
-    { name = "requests", marker = "python_full_version < '3.12'" },
-    { name = "tqdm", marker = "python_full_version < '3.12'" },
+    { name = "funget", version = "1.1.58", source = { registry = "https://pypi.org/simple" } },
+    { name = "funlog-tau" },
+    { name = "funsecret" },
+    { name = "orjson" },
+    { name = "requests" },
+    { name = "tqdm" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/0c/fd/9ede330504214637186f0bb9cb0ad98ee435dcf0c77f0a8648a22dc83ede/fundrive-2.0.57.tar.gz", hash = "sha256:6355f3b773d3c58a6551b45bb74a35d22a33ea57f22d44b07d9db6e64b76f268", size = 169451, upload-time = "2026-02-11T12:21:09.048Z" }
 wheels = [
@@ -775,14 +775,14 @@ wheels = [
 
 [package.optional-dependencies]
 alipan = [
-    { name = "aligo", marker = "python_full_version < '3.12'" },
-    { name = "fundrive-alipan", version = "1.3.12", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "aligo" },
+    { name = "fundrive-alipan", version = "1.3.12", source = { registry = "https://pypi.org/simple" } },
 ]
 baidu = [
-    { name = "fundrive-baidu", marker = "python_full_version < '3.12'" },
+    { name = "fundrive-baidu" },
 ]
 webdav = [
-    { name = "webdav4", marker = "python_full_version < '3.12'" },
+    { name = "webdav4" },
 ]
 
 [[package]]
@@ -798,13 +798,13 @@ resolution-markers = [
     "python_full_version >= '3.12' and python_full_version < '3.14' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "funget", version = "1.1.69", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
-    { name = "funsecret", marker = "python_full_version >= '3.12'" },
-    { name = "nltlog", marker = "python_full_version >= '3.12'" },
-    { name = "orjson", marker = "python_full_version >= '3.12'" },
-    { name = "requests", marker = "python_full_version >= '3.12'" },
-    { name = "tqdm", marker = "python_full_version >= '3.12'" },
-    { name = "urllib3", marker = "python_full_version >= '3.12'" },
+    { name = "funget", version = "1.1.69", source = { registry = "https://pypi.org/simple" } },
+    { name = "funsecret" },
+    { name = "nltlog" },
+    { name = "orjson" },
+    { name = "requests" },
+    { name = "tqdm" },
+    { name = "urllib3" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/5d/3a/4790d615be096d93ea9a04219f3408f341776808abeb783364b068e8c3a7/fundrive-2.0.86-py3-none-any.whl", hash = "sha256:c5e124f6688c998f1b3db004117eb1954d96808fb7ddc6b47534a8a5460d3dfc", size = 217923, upload-time = "2026-08-26T10:19:19.162Z" },
@@ -812,14 +812,14 @@ wheels = [
 
 [package.optional-dependencies]
 alipan = [
-    { name = "aligo", marker = "python_full_version >= '3.12'" },
-    { name = "fundrive-alipan", version = "1.3.13", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "aligo" },
+    { name = "fundrive-alipan", version = "1.3.13", source = { registry = "https://pypi.org/simple" } },
 ]
 baidu = [
-    { name = "fundrive-baidu", marker = "python_full_version >= '3.12'" },
+    { name = "fundrive-baidu" },
 ]
 webdav = [
-    { name = "webdav4", marker = "python_full_version >= '3.12'" },
+    { name = "webdav4" },
 ]
 
 [[package]]
@@ -833,9 +833,9 @@ resolution-markers = [
     "python_full_version < '3.11'",
 ]
 dependencies = [
-    { name = "funget", version = "1.1.58", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
-    { name = "funutil", marker = "python_full_version < '3.12'" },
-    { name = "qrcode", marker = "python_full_version < '3.12'" },
+    { name = "funget", version = "1.1.58", source = { registry = "https://pypi.org/simple" } },
+    { name = "funutil" },
+    { name = "qrcode" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/6a/c3/85f9a91b09c7c697b1ea3be8e00ac20ade7f5a6ad1804b5e6c0392d00edd/fundrive_alipan-1.3.12-py3-none-any.whl", hash = "sha256:764de07f8be88414d733dd9788e1761af11de7830f005683d38d109f293ebaed", size = 6734, upload-time = "2025-07-09T03:16:57.764Z" },
@@ -854,11 +854,11 @@ resolution-markers = [
     "python_full_version >= '3.12' and python_full_version < '3.14' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "funfile", marker = "python_full_version >= '3.12'" },
-    { name = "funget", version = "1.1.69", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
-    { name = "funsecret", marker = "python_full_version >= '3.12'" },
-    { name = "funutil", marker = "python_full_version >= '3.12'" },
-    { name = "qrcode", marker = "python_full_version >= '3.12'" },
+    { name = "funfile" },
+    { name = "funget", version = "1.1.69", source = { registry = "https://pypi.org/simple" } },
+    { name = "funsecret" },
+    { name = "funutil" },
+    { name = "qrcode" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e2/66/6698c3fc4b3a46169aed86449614f234ea152d3f36940cb5c8b21128272f/fundrive_alipan-1.3.13-py3-none-any.whl", hash = "sha256:dcb97032a5feece55322bed3dc1337c561501798673725a25edb0cca9cf79798", size = 7650, upload-time = "2026-08-26T16:03:44.568Z" },
@@ -910,10 +910,10 @@ resolution-markers = [
     "python_full_version < '3.11'",
 ]
 dependencies = [
-    { name = "funfile", marker = "python_full_version < '3.12'" },
-    { name = "nltlog", marker = "python_full_version < '3.12'" },
-    { name = "requests", marker = "python_full_version < '3.12'" },
-    { name = "typer-slim", marker = "python_full_version < '3.12'" },
+    { name = "funfile" },
+    { name = "nltlog" },
+    { name = "requests" },
+    { name = "typer-slim" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a8/f9/b791e1b0ceed15661161f4493dd9ec12d8d133ec17207b5b752793f7a783/funget-1.1.58-py3-none-any.whl", hash = "sha256:0a23c6c5f52b35500a71403a0678c4b9b753cc212d9eb48d337e6dddef348ebd", size = 21589, upload-time = "2026-03-26T16:23:25.355Z" },
@@ -932,11 +932,11 @@ resolution-markers = [
     "python_full_version >= '3.12' and python_full_version < '3.14' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "farlog", marker = "python_full_version >= '3.12'" },
-    { name = "funfile", marker = "python_full_version >= '3.12'" },
-    { name = "funworker", marker = "python_full_version >= '3.12'" },
-    { name = "requests", marker = "python_full_version >= '3.12'" },
-    { name = "urllib3", marker = "python_full_version >= '3.12'" },
+    { name = "farlog" },
+    { name = "funfile" },
+    { name = "funworker" },
+    { name = "requests" },
+    { name = "urllib3" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/8b/91/63753477e509e5c677ff4289f03f154386f282b7a7ee4dd51e2d0f687307/funget-1.1.69-py3-none-any.whl", hash = "sha256:8363618238dcdad75d160732e9e33c1a66fc52542f29263a57033600507f79af", size = 15099, upload-time = "2026-08-28T03:28:49.548Z" },
@@ -947,7 +947,7 @@ name = "funlog-tau"
 version = "1.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "loguru", marker = "python_full_version < '3.12'" },
+    { name = "loguru" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/f9/06/8a40f17f4051b5a378611207866e912ac07ef44c0e4c2a08aac45e14f479/funlog_tau-1.0.2.tar.gz", hash = "sha256:3566771121f5287c9ecff03625c581767b3ca30815d7e1a66544d845aa5d53fe", size = 2028, upload-time = "2026-02-13T15:03:22.301Z" }
 wheels = [
@@ -1037,7 +1037,7 @@ name = "funworker"
 version = "0.1.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "farlog", marker = "python_full_version >= '3.12'" },
+    { name = "farlog" },
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/5d/00/12b0362f85fc4be765dd03b5679dc99ca04972f6a94dbf0fabfe3f2c683b/funworker-0.1.4-py3-none-any.whl", hash = "sha256:fa2497740325b867df7e54525b07d5f1d2b81c686d4bf31912b8cdae05e38b40", size = 24713, upload-time = "2026-08-28T02:46:19.448Z" },
@@ -1140,8 +1140,8 @@ name = "httpcore2"
 version = "2.12.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "h11", marker = "python_full_version < '3.11' or sys_platform != 'emscripten'" },
-    { name = "truststore", marker = "python_full_version < '3.11' or sys_platform != 'emscripten'" },
+    { name = "h11" },
+    { name = "truststore" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/be/ad/f4f0e57345f1870f3e8cb624e058d7eca6e5a27d33bcc3311d9b618734cd/httpcore2-2.12.0.tar.gz", hash = "sha256:9293522bba0aa7c4c8e9e3f040c16575bd8868e155a77fa30c7a9085a5eae648", size = 67548, upload-time = "2026-08-18T13:22:08.211Z" }
 wheels = [
@@ -1845,10 +1845,10 @@ resolution-markers = [
     "python_full_version < '3.11'",
 ]
 dependencies = [
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "python-dateutil", marker = "python_full_version < '3.11'" },
-    { name = "pytz", marker = "python_full_version < '3.11'" },
-    { name = "tzdata", marker = "python_full_version < '3.11'" },
+    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" } },
+    { name = "python-dateutil" },
+    { name = "pytz" },
+    { name = "tzdata" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/33/01/d40b85317f86cf08d853a4f495195c73815fdf205eef3993821720274518/pandas-2.3.3.tar.gz", hash = "sha256:e05e1af93b977f7eafa636d043f9f94c7ee3ac81af99c13508215942e64c993b", size = 4495223, upload-time = "2025-09-29T23:34:51.853Z" }
 wheels = [
@@ -1917,10 +1917,10 @@ resolution-markers = [
     "python_full_version == '3.11.*' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 dependencies = [
-    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.11.*'" },
+    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "numpy", version = "2.5.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
-    { name = "python-dateutil", marker = "python_full_version >= '3.11'" },
-    { name = "tzdata", marker = "(python_full_version >= '3.11' and sys_platform == 'emscripten') or (python_full_version >= '3.11' and sys_platform == 'win32')" },
+    { name = "python-dateutil" },
+    { name = "tzdata", marker = "sys_platform == 'emscripten' or sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/be/4f/5f3422a2afec5ffc46308b79e53291365a93748b498ac2e58bead0197916/pandas-3.0.5.tar.gz", hash = "sha256:dca3734d6ab7c906e6730f0788b0a1dbb9f2467731f9711f77995c8e9d62d712", size = 4658219, upload-time = "2026-07-22T22:19:28.819Z" }
 wheels = [
@@ -2531,7 +2531,7 @@ name = "typer-slim"
 version = "0.24.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "typer", marker = "python_full_version < '3.12'" },
+    { name = "typer" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a7/a7/e6aecc4b4eb59598829a3b5076a93aff291b4fdaa2ded25efc4e1f4d219c/typer_slim-0.24.0.tar.gz", hash = "sha256:f0ed36127183f52ae6ced2ecb2521789995992c521a46083bfcdbb652d22ad34", size = 4776, upload-time = "2026-02-16T22:08:51.2Z" }
 wheels = [
@@ -2570,11 +2570,11 @@ wheels = [
 
 [[package]]
 name = "urllib3"
-version = "2.7.0"
+version = "2.8.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/53/0c/06f8b233b8fd13b9e5ee11424ef85419ba0d8ba0b3138bf360be2ff56953/urllib3-2.7.0.tar.gz", hash = "sha256:231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c", size = 433602, upload-time = "2026-05-07T16:13:18.596Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e3/05/b17359e1cefb4f909b5e40b1b90a496d987258916dbbf88e842c729f510e/urllib3-2.8.0.tar.gz", hash = "sha256:63bf2ead4c879426ebf22ef2a781eeb4aa3b4ae798a0435506f8687fd5bb9b63", size = 458972, upload-time = "2026-09-15T19:29:36.253Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7f/3e/5db95bcf282c52709639744ca2a8b149baccf648e39c8cc87553df9eae0c/urllib3-2.7.0-py3-none-any.whl", hash = "sha256:9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897", size = 131087, upload-time = "2026-05-07T16:13:17.151Z" },
+    { url = "https://files.pythonhosted.org/packages/92/9d/c4e665119135114480843e7ab388fa94d8480650450e6f8e26b70d323a4c/urllib3-2.8.0-py3-none-any.whl", hash = "sha256:0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3", size = 135717, upload-time = "2026-09-15T19:29:34.577Z" },
 ]
 
 [[package]]
