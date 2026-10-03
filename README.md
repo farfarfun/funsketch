@@ -22,12 +22,25 @@ pip install funsketch
 
 ## 用法示例
 
+运行流水线前，先用 `funsecret` 写入百度网盘登录凭证（替换成你自己账号的真实值）：
+
+```python
+from funsecret import write_secret
+
+write_secret("你的bduss", "fundrive", "baidu", "bduss")
+write_secret("你的stoken", "fundrive", "baidu", "stoken")
+write_secret("你的ptoken", "fundrive", "baidu", "ptoken")
+```
+
+然后把下面示例里的 `shared_url`/`pwd` 换成你要下载的短剧分享链接和提取码即可运行：
+
 ```python
 from funsketch.sketch.meta import SketchMeta
 from funsketch.sketch.task.load import LoadTask
 from funsketch.sketch.task.audio import AudioTask
 from funsketch.sketch.task.text import TextTask
 
+# shared_url/pwd 替换为真实的网盘分享链接与提取码
 sketch = SketchMeta(shared_url="https://pan.baidu.com/s/xxxx", pwd="xxxx", name="示例短剧")
 
 LoadTask(sketch=sketch).run()   # 下载分享链接里的全部 mp4
@@ -35,7 +48,8 @@ AudioTask(sketch=sketch).run()  # 提取音频
 TextTask(sketch=sketch).run()   # Whisper 转写文字
 ```
 
-需要先通过 `funsecret` 配置好网盘登录凭证（如 `fundrive`/`baidu`/`bduss`、`stoken`、`ptoken`）和数据库连接串（`funsketch`/`db`/`url`）。
+这是一条依赖真实网盘账号和分享资源的流水线，无法在不接入外部网盘的情况下提供完全离线的示例；
+`funsketch.op` 一套额外依赖数据库连接串（`funsketch`/`db`/`url`，同样用 `write_secret` 写入）。
 
 ---
 
