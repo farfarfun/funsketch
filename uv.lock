@@ -999,7 +999,7 @@ dev = [
 requires-dist = [
     { name = "farcache", specifier = ">=2.0.3" },
     { name = "fardb", specifier = ">=1.4.3" },
-    { name = "farlog", specifier = ">=1.1" },
+    { name = "farlog", specifier = ">=1.1.7" },
     { name = "funai", specifier = ">=1.0.1" },
     { name = "fundrive", extras = ["alipan", "baidu", "webdav"], specifier = ">=1.2.74" },
     { name = "funsecret", specifier = ">=1.4.84" },

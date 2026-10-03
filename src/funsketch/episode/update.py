@@ -1,8 +1,10 @@
 import json
 import os
+from typing import Any
 
-from funtalk.asr import WhisperASR
 from farlog import getLogger
+from fundrive.core import BaseDrive
+from funtalk.asr import WhisperASR
 from moviepy import VideoFileClip
 from sqlalchemy import Engine, func, select
 from sqlalchemy.orm import Session
@@ -13,7 +15,10 @@ logger = getLogger("funsketch")
 
 
 class EpisodePath:
-    def __init__(self, episode: Episode):
+    """根据分集记录计算本地视频/音频/文本的落盘路径。"""
+
+    def __init__(self, episode: Episode) -> None:
+        """根据分集信息初始化各阶段产物的本地路径，并创建所在目录。"""
         self.episode = episode
         self.sketch_dir = f"funsketch/{episode.sketch_id}"
 
@@ -28,7 +33,8 @@ class EpisodePath:
         )
         os.makedirs(self.sketch_dir, exist_ok=True)
 
-    def download_video(self, driver):
+    def download_video(self, driver: BaseDrive) -> None:
+        """用给定的网盘驱动把分集视频下载到本地。"""
         driver.download_file(
             self.episode.fid,
             local_dir=self.sketch_dir,
@@ -36,7 +42,8 @@ class EpisodePath:
             overwrite=False,
         )
 
-    def convert_video(self, *args, **kwargs):
+    def convert_video(self, *args: Any, **kwargs: Any) -> None:
+        """用 moviepy 从本地视频提取音频；音频已存在则跳过。"""
         if os.path.exists(self.audio_path):
             logger.info(f"audio file {self.audio_path} already exists")
             return
@@ -46,7 +53,8 @@ class EpisodePath:
         audio_clip.close()
         video_clip.close()
 
-    def detect_text(self):
+    def detect_text(self) -> None:
+        """用 Whisper 把本地音频转写为文本；文本已存在则跳过。"""
         if os.path.exists(self.text_path):
             logger.info(f"text file {self.text_path} already exists")
             return
@@ -57,7 +65,8 @@ class EpisodePath:
         logger.success(f"{self.text_path} success")
 
 
-def update_episode(engine: Engine, drive, *args, **kwargs):
+def update_episode(engine: Engine, drive: BaseDrive, *args: Any, **kwargs: Any) -> None:
+    """对文本过短的分集逐条下载视频、提取音频、转写文本并回写数据库。"""
     with Session(engine) as session:
         episodes = session.execute(
             select(Episode).where(func.char_length(Episode.text) < 10)

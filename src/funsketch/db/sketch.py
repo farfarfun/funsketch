@@ -12,13 +12,13 @@ class Sketch(BaseTable):
     video_fid: Mapped[str] = mapped_column(String(64), comment="视频文件夹", default="")
     fid: Mapped[str] = mapped_column(String(64), comment="资源文件夹", default="")
 
-    def _get_uid(self):
+    def _get_uid(self) -> str:
         return self.name
 
-    def _child(self):
+    def _child(self) -> type["Sketch"]:
         return Sketch
 
-    def _to_dict(self):
+    def _to_dict(self) -> dict:
         return {"name": self.name, "fid": self.fid, "video_fid": self.video_fid}
 
 
