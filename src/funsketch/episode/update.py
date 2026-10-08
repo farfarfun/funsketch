@@ -80,5 +80,5 @@ def update_episode(engine: Engine, drive: BaseDrive, *args: Any, **kwargs: Any) 
             text_path = f"/{episode_path.text_path}"
             drive.upload_file(local_path=episode_path.text_path, fid=text_path)
             episode.text = text_path
-            episode.upsert(session=session)
+            episode.upsert(session=session, update_data=True)
             session.commit()

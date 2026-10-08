@@ -339,6 +339,19 @@ def test_sync_episode_data_with_fake_dependencies(monkeypatch):
         assert row.index == 1
 
 
+def test_sync_episode_data_reports_invalid_model_response(monkeypatch):
+    """模型返回非 JSON 时，应包含短剧标识和原始异常。"""
+    from funsketch.op.episode import _parse_episode_response
+
+    try:
+        _parse_episode_response("not-json", "sketch-1")
+    except ValueError as exc:
+        assert "sketch-1" in str(exc)
+        assert isinstance(exc.__cause__, json.JSONDecodeError)
+    else:
+        raise AssertionError("非法模型响应应抛出 ValueError")
+
+
 def test_update_text_episode_handles_empty_database(monkeypatch):
     from sqlalchemy import create_engine
 
@@ -350,6 +363,139 @@ def test_update_text_episode_handles_empty_database(monkeypatch):
     monkeypatch.setattr(analyse_op, "get_default_drive", lambda: (object(), object()))
 
     analyse_op.update_text_episode()
+
+
+def test_update_text_episode_processes_and_overwrites_existing_text(monkeypatch):
+    """文本同步应入库，已有文本跳过，overwrite 时重新处理。"""
+    from sqlalchemy import create_engine, select
+    from sqlalchemy.orm import Session
+
+    from funsketch.db import Episode, Sketch
+    from funsketch.db.analyse import Analyse
+    from funsketch.op import analyse as analyse_op
+
+    engine = create_engine("sqlite:///:memory:")
+    analyse_op.BaseTable.metadata.create_all(engine)
+    with Session(engine) as session:
+        sketch = Sketch(name="短剧", fid="sketch-dir", video_fid="video-dir")
+        sketch.upsert(session=session)
+        episode = Episode(
+            sketch_id=sketch.uid, index=1, name="第一集", fid="video-1"
+        )
+        episode_id = episode.uid
+        episode.upsert(session=session)
+        session.commit()
+
+    processed = []
+
+    class FakeEpisodePath:
+        def __init__(self, episode):
+            self.episode = episode
+            self.text_path = f"{episode.uid}.txt"
+
+        def download_video(self, driver):
+            processed.append(("download", self.episode.uid))
+
+        def convert_video(self):
+            processed.append(("convert", self.episode.uid))
+
+        def detect_text(self):
+            processed.append(("text", self.episode.uid))
+
+    class UploadDrive:
+        def __init__(self):
+            self.files = []
+
+        def mkdir(self, fid, name):
+            assert fid == "sketch-dir"
+            assert name == "text"
+            return "text-dir"
+
+        def upload_file(self, filedir, fid):
+            assert fid == "text-dir"
+            self.files.append(
+                SimpleNamespace(name=filedir, fid=f"fid-{len(self.files) + 1}-{filedir}")
+            )
+
+        def get_file_list(self, fid):
+            assert fid == "text-dir"
+            return self.files
+
+    upload_drive = UploadDrive()
+    monkeypatch.setattr(analyse_op, "create_engine", lambda *_a, **_k: engine)
+    monkeypatch.setattr(analyse_op, "read_secret", lambda *_a: "unused")
+    monkeypatch.setattr(
+        analyse_op, "get_default_drive", lambda: (upload_drive, object())
+    )
+    monkeypatch.setattr(analyse_op, "EpisodePath", FakeEpisodePath)
+
+    analyse_op.update_text_episode()
+    analyse_op.update_text_episode()
+    analyse_op.update_text_episode(overwrite=True)
+
+    assert processed == [
+        ("download", episode_id),
+        ("convert", episode_id),
+        ("text", episode_id),
+        ("download", episode_id),
+        ("convert", episode_id),
+        ("text", episode_id),
+    ]
+    with Session(engine) as session:
+        row = session.execute(select(Analyse)).scalar_one()
+        assert row.episode_id == episode_id
+        assert row.fid == f"fid-2-{episode_id}.txt"
+
+
+def test_update_episode_processes_short_text(monkeypatch):
+    """短文本分集会完成下载、转写、上传并回写文本路径。"""
+    from sqlalchemy import create_engine, select
+    from sqlalchemy.orm import Session
+
+    from funsketch.db import Episode
+    from funsketch.episode import update as update_op
+
+    engine = create_engine("sqlite:///:memory:")
+    update_op.Episode.metadata.create_all(engine)
+    with Session(engine) as session:
+        episode = Episode(
+            sketch_id="sketch-1", index=1, name="第一集", fid="video-1", text=""
+        )
+        episode.upsert(session=session)
+        session.commit()
+
+    steps = []
+
+    class FakeEpisodePath:
+        def __init__(self, episode):
+            self.episode = episode
+            self.text_path = "text/episode-1.txt"
+
+        def download_video(self, driver):
+            steps.append("download")
+
+        def convert_video(self):
+            steps.append("convert")
+
+        def detect_text(self):
+            steps.append("text")
+
+    class FakeDrive:
+        def __init__(self):
+            self.uploads = []
+
+        def upload_file(self, local_path, fid):
+            self.uploads.append((local_path, fid))
+
+    drive = FakeDrive()
+    monkeypatch.setattr(update_op, "EpisodePath", FakeEpisodePath)
+    update_op.update_episode(engine=engine, drive=drive)
+
+    assert steps == ["download", "convert", "text"]
+    assert drive.uploads == [("text/episode-1.txt", "/text/episode-1.txt")]
+    with Session(engine) as session:
+        row = session.execute(select(Episode)).scalar_one()
+        assert row.text == "/text/episode-1.txt"
 
 
 def test_load_task_uses_supplied_credentials(monkeypatch, tmp_path):
