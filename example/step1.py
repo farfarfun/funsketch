@@ -20,3 +20,7 @@ def step1():
         video_fid="/sketch/替嫁侯府守活寡她赢麻了30/video",
     )
     update_episode(engine=engine, drive=drive)
+
+
+if __name__ == "__main__":
+    step1()

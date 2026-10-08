@@ -7,6 +7,12 @@ logger = getLogger("funsketch")
 
 
 class Sketch(BaseTable):
+    """短剧资源表，保存短剧名称及其在网盘中的资源和视频目录标识。
+
+    实例由 ``name``、``fid`` 和 ``video_fid`` 初始化；``_to_dict`` 返回这些字段
+    及基类生成的唯一标识，供同步流程写入和读取。
+    """
+
     __tablename__ = "sketch"
     name: Mapped[str] = mapped_column(String(128), comment="资源名称")
     video_fid: Mapped[str] = mapped_column(String(64), comment="视频文件夹", default="")

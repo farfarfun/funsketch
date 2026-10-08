@@ -7,6 +7,12 @@ logger = getLogger("funsketch")
 
 
 class Episode(BaseTable):
+    """短剧分集表，记录所属短剧、分集序号及对应视频文件信息。
+
+    实例主要使用 ``sketch_id``、``index``、``name``、``size``、``fid`` 和 ``text``
+    初始化；``_to_dict`` 返回这些字段及基类生成的唯一标识。
+    """
+
     __tablename__ = "episode_detail"
     sketch_id: Mapped[str] = mapped_column(String(64), comment="文件唯一ID", default="")
     index: Mapped[int] = mapped_column(comment="集", default="")
@@ -14,6 +20,7 @@ class Episode(BaseTable):
     name: Mapped[str] = mapped_column(String(128), comment="资源名称")
     size: Mapped[int] = mapped_column(comment="大小", default=0)
     fid: Mapped[str] = mapped_column(String(64), comment="文件唯一ID", default="")
+    text: Mapped[str] = mapped_column(String(1200), comment="视频文本", default="")
 
     def _get_uid(self) -> str:
         return f"{self.sketch_id}:{self.index}"
@@ -28,4 +35,5 @@ class Episode(BaseTable):
             "name": self.name,
             "size": self.size,
             "fid": self.fid,
+            "text": self.text,
         }

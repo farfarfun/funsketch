@@ -93,18 +93,39 @@ def update_text_episode(overwrite: bool = False) -> None:
             logger.success("all episonde analyse success.")
             return
 
-        text_fid = driver1.mkdir(sketch_map[episodes[0].sketch_id], name="text")
+        sketch_id = episodes[0].sketch_id
+        sketch_fid = sketch_map.get(sketch_id)
+        if not sketch_fid:
+            raise ValueError(f"分集所属短剧 {sketch_id} 未找到网盘目录")
+        try:
+            text_fid = driver1.mkdir(sketch_fid, name="text")
+        except Exception as exc:
+            raise RuntimeError(f"无法为短剧 {sketch_id} 创建文本目录") from exc
 
         for episode in episodes:
             episode_path = EpisodePath(episode)
             episode_path.download_video(driver=driver2)
             episode_path.convert_video()
             episode_path.detect_text()
-            driver1.upload_file(filedir=episode_path.text_path, fid=text_fid)
+            try:
+                driver1.upload_file(filedir=episode_path.text_path, fid=text_fid)
+            except Exception as exc:
+                raise RuntimeError(
+                    f"无法上传分集 {episode.uid} 的文本文件 {episode_path.text_path}"
+                ) from exc
 
-            name_dict = dict(
-                [(file.name, file.fid) for file in driver2.get_file_list(text_fid)]
-            )
+            try:
+                files = driver1.get_file_list(text_fid)
+            except Exception as exc:
+                raise RuntimeError(
+                    f"无法读取短剧 {sketch_id} 的文本目录 {text_fid}"
+                ) from exc
+            try:
+                name_dict = {file.name: file.fid for file in files}
+            except (AttributeError, TypeError) as exc:
+                raise ValueError(
+                    f"短剧 {sketch_id} 的文本目录 {text_fid} 返回了无效文件数据"
+                ) from exc
             for episode in episodes:
                 episode_path = EpisodePath(episode)
                 text_name = os.path.basename(episode_path.text_path)
@@ -116,5 +137,5 @@ def update_text_episode(overwrite: bool = False) -> None:
                         name=text_name,
                         folder="text",
                     )
-                    entity.upsert(session=session)
+                    entity.upsert(session=session, update_data=True)
                     session.commit()
